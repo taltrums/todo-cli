@@ -5,10 +5,14 @@
   },
   {
     "text": "Write a program",
-    "done": false
+    "done": true
   },
   {
     "text": "Sleep",
     "done": false
+  },
+  {
+    "text": "improve program",
+    "done": true
   }
 ]

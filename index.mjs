@@ -56,7 +56,7 @@ const saveTodos = (todos) => {
 program
   .name('todo')
   .description('Manage your todos')
-  .version('0.0.1');
+  .version('0.0.2');
 
 program
   .command('list')
@@ -112,7 +112,7 @@ program
     } else {
       todos[index - 1].done = true;
       saveTodos(todos);
-      console.log(chalk.green(`Marked todo at index ${index} as done`));
+      console.log(chalk.green(`Marked todo ${todos[index -1].text} at index ${index} as done`));
     }
   });
 
@@ -125,6 +125,21 @@ program
     console.log(chalk.green('Cleared all todos'));
   });
 
+
+program
+  .command('undone')
+  .description('Mark a todo as undone')
+  .argument('[index]', 'The index of the todo to mark as undone')
+  .action((index) => {
+    const todos = loadTodos();
+    if (index < 1 || index > todos.length) {
+      console.log(chalk.red(`Invalid index: ${index}`));
+    } else {
+      todos[index - 1].done = false;
+      saveTodos(todos);
+      console.log(chalk.yellow(`Marked todo ${todos[index -1].text} at index ${index} as undone`));
+    }
+  });
 
 
   program.parse(process.argv);
